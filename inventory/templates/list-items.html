@@ -11,7 +11,7 @@
     <title>{{title}}</title>
 
     <link rel="canonical" href="">
-    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
@@ -23,10 +23,27 @@
     {% include 'navbar.html' %}
     <main role="main" class="container">
       <div class="jumbotron">
-        <h1>{{title}}</h1>
-        {% for item in queryset %}
-          {{item.item_name}}, {{item.quantity}}
-        {% endfor %}
+        <div class="header">{{header}}</div>
+        <div class="display_table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>COUNT</th>
+                <th>CATEGORY</th>
+                <th>ITEM NAME</th>
+                <th>QUANTITY IN STORE</th>
+              </tr>
+            </thead>
+          {% for item in queryset %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{item.category}}</td>
+              <td>{{item.item_name}}</td>
+              <td>{{item.quantity}}</td>
+            </tr>
+          {% endfor %}
+          </table>
+        </div>
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

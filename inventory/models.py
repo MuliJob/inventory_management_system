@@ -14,7 +14,7 @@ class Category(models.Model):
     return self.name
   
 class Stock(models.Model):
-  category = models.CharField(max_length=50, blank=True, null=True, choices=category_choice)
+  category = models.ForeignKey(Category, on_delete=models.CASCADE)
   item_name = models.CharField(max_length=50, blank=True, null=True)
   quantity = models.IntegerField(default='0', blank=False, null=True)
   receive_quantity = models.IntegerField(default='0', blank=True, null=True)

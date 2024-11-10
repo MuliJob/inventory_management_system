@@ -7,6 +7,12 @@ category_choice = {
   ('Phone', 'Phone'),
   ('Electronic', 'Electronic')
 }
+
+class Category(models.Model):
+  name = models.CharField(max_length=50, blank=True, null=True)
+  def __str__(self):
+    return self.name
+  
 class Stock(models.Model):
   category = models.CharField(max_length=50, blank=True, null=True, choices=category_choice)
   item_name = models.CharField(max_length=50, blank=True, null=True)

@@ -1,5 +1,4 @@
 {% load static %}
-{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,14 +8,12 @@
     <meta name="author" content="">
     <link rel="icon" href="{% static 'img/favicons/favicon.ico' %}">
 
-    <title>{{title}}</title>
+    <title>Home Page</title>
 
     <link rel="canonical" href="">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Option 1: Include in HTML -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/navbar-top-fixed.css' %}">
@@ -26,35 +23,12 @@
     {% include 'navbar.html' %}
     <main role="main" class="container">
       <div class="jumbotron">
-        <div class="header">{{header}}</div>
-        <form action="{% url 'list_items' %}" method="post">
+        <form action="" method="post">
           {% csrf_token %}
-          {{form|crispy}}
-          <input type="submit" value="Search">
+          <h1>Are you sure you want to delete?</h1><br>
+          <input type="submit" class="btn btn-danger" value="Yes">
+          <a href="/list-items"><div class="btn btn-primary">No</div></a>
         </form>
-        <br>
-        <div class="display_table">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>COUNT</th>
-                <th>CATEGORY</th>
-                <th>ITEM NAME</th>
-                <th>QUANTITY IN STORE</th>
-                <th>DELETE</th>
-              </tr>
-            </thead>
-          {% for item in queryset %}
-            <tr>
-              <td>{{forloop.counter}}</td>
-              <td>{{item.category}}</td>
-              <td><a href="{% url 'update_items' item.id %}">{{item.item_name}}</a></td>
-              <td>{{item.quantity}}</td>
-              <td><a href="{% url 'delete_items' item.id %}"><i class="bi bi-trash-fill h6" style="color: red;"></i></a></td>
-            </tr>
-          {% endfor %}
-          </table>
-        </div>
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

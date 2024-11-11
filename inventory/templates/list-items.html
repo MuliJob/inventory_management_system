@@ -56,6 +56,8 @@
                 <th>CATEGORY</th>
                 <th>ITEM NAME</th>
                 <th>QUANTITY IN STORE</th>
+                <th>TIMESTAMP</th>
+                <th>LAST UPDATED</th>
                 <th>DELETE</th>
               </tr>
             </thead>
@@ -65,6 +67,8 @@
               <td>{{item.category}}</td>
               <td><a href="{% url 'update_items' item.id %}">{{item.item_name}}</a></td>
               <td>{{item.quantity}}</td>
+              <td>{{item.timestamp}}</td>
+              <td>{{item.last_updated}}</td>
               <td><a href="{% url 'delete_items' item.id %}"><i class="bi bi-trash-fill h6" style="color: red;"></i></a></td>
             </tr>
           {% endfor %}

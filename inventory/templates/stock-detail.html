@@ -41,37 +41,25 @@
         </ul>
       {% endif %}
       <div class="jumbotron">
-        <div class="header">{{header}}</div>
-        <form action="{% url 'list_items' %}" method="post">
-          {% csrf_token %}
-          {{form|crispy}}
-          <input type="submit" value="Search">
-        </form>
-        <br>
+        <a href="#issue"><div class="btn btn-danger">ISSUE THIS ITEM</div></a>
+        <a href="#receive"><div class="btn btn-primary">RECEIVE THIS ITEM</div></a>
+        <br><br>
         <div class="display_table">
           <table class="table">
             <thead>
               <tr>
-                <th>COUNT</th>
-                <th>CATEGORY</th>
                 <th>ITEM NAME</th>
                 <th>QUANTITY IN STORE</th>
-                <th>TIMESTAMP</th>
                 <th>LAST UPDATED</th>
-                <th>DELETE</th>
+                <th>REORDER LEVEL</th>
               </tr>
             </thead>
-          {% for item in queryset %}
             <tr>
-              <td>{{forloop.counter}}</td>
-              <td>{{item.category}}</td>
-              <td><a href="{% url 'update_items' item.id %}">{{item.item_name}}</a></td>
-              <td><a href="{% url 'stock_detail' item.id %}">{{item.quantity}}</a></td>
-              <td>{{item.timestamp}}</td>
-              <td>{{item.last_updated}}</td>
-              <td><a href="{% url 'delete_items' item.id %}"><i class="bi bi-trash-fill h6" style="color: red;"></i></a></td>
+              <td>{{queryset.item_name}}</td>
+              <td>{{queryset.quantity}}</td>
+              <td>{{queryset.last_updated}}</td>
+              <td>{{queryset.reorder_level}}</td>
             </tr>
-          {% endfor %}
           </table>
         </div>
       </div>

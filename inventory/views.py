@@ -76,3 +76,10 @@ def delete_items(request, pk):
     messages.success(request, 'Deleted successfully')
     return redirect('/list-items')
   return render(request, 'delete-items.html')
+
+def stock_detail(request, pk):
+  queryset = Stock.objects.get(id=pk)
+  context = {
+    'queryset': queryset,
+  }
+  return render(request, 'stock-detail.html', context)

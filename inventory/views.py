@@ -125,3 +125,20 @@ def receive_items(request, pk):
     'username': 'Received By: ' + str(request.user),
   }
   return render(request, 'add-items.html', context)
+
+def reorder_level(request, pk):
+  queryset = Stock.objects.get(id=pk)
+  form = ReorderLevelForm(request.POST or None, instance=queryset)
+  if form.is_valid():
+    instance = form.save(commit=False)
+    instance.save()
+    messages.success(request, 'Reorder level for ' + str(instance.item_name) + ' is updated to ' + str(instance.reorder_level))
+
+
+    return redirect('/list-items')
+  
+  context = {
+    'instance': queryset,
+    'form': form,
+  }
+  return render(request, 'add-items.html', context)

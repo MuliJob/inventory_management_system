@@ -27,5 +27,6 @@ urlpatterns = [
     path('stock-detail/<str:pk>/', views.stock_detail, name='stock_detail'),
     path('issue-items/<str:pk>/', views.issue_items, name='issue_items'),
     path('receive-items/<str:pk>/', views.receive_items, name='receive_items'),
+    path('reorder-level/<str:pk>/', views.reorder_level, name='reorder_level'),
     path('admin/', admin.site.urls),
 ]

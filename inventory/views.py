@@ -16,7 +16,7 @@ def home(request):
 
 @login_required
 def list_items(request):
-  header = 'List of Items'
+  header = 'LIST OF ITEMS'
   form = StockSearchForm(request.POST or None)
   queryset = Stock.objects.all()
   context = {
@@ -96,8 +96,9 @@ def issue_items(request, pk):
   form = IssueForm(request.POST or None, instance=queryset)
   if form.is_valid():
     instance = form.save(commit=False)
+    instance.receive_quantity = 0
     instance.quantity -= instance.issue_quantity
-    # instance.issue_by = str(request.user)
+    instance.issue_by = str(request.user)
     messages.success(request, 'Issued SUCCESSFULLY. ' + str(instance.quantity) + ' ' + str(instance.item_name) + 's now left in Store')
     instance.save()
 
@@ -118,7 +119,9 @@ def receive_items(request, pk):
   form = ReceiveForm(request.POST or None, instance=queryset)
   if form.is_valid():
     instance = form.save(commit=False)
+    instance.issue_quantity = 0
     instance.quantity += instance.receive_quantity
+    instance.receive_by = str(request.user)
     instance.save()
     messages.success(request, 'Received SUCCESSFULLY. ' + str(instance.quantity) + ' ' + str(instance.item_name) + 's now in Store')
 
@@ -151,3 +154,13 @@ def reorder_level(request, pk):
     'form': form,
   }
   return render(request, 'add-items.html', context)
+
+@login_required
+def list_history(request):
+  header = 'LIST OF ITEMS'
+  queryset = StockHistory.objects.all()
+  context = {
+    'header': header,
+    'queryset': queryset,
+  }
+  return render(request, 'list-history.html', context)

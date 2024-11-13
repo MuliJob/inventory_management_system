@@ -29,6 +29,7 @@ urlpatterns = [
     path('issue-items/<str:pk>/', views.issue_items, name='issue_items'),
     path('receive-items/<str:pk>/', views.receive_items, name='receive_items'),
     path('reorder-level/<str:pk>/', views.reorder_level, name='reorder_level'),
+    path('list-history/', views.list_history, name='list_history'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),

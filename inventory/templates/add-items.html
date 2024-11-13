@@ -18,6 +18,15 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/navbar-top-fixed.css' %}">
+    <style>
+      .display_table {
+        border-bottom-right-radius: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 20px;
+        box-shadow: 12px 12px 10px #2e6da4;
+      }
+    </style>
   </head>
 
   <body>
@@ -25,11 +34,17 @@
     <main role="main" class="container">
       <div class="jumbotron">
         <h1>{{title}}</h1>
-        <form action="" method="POST">
-          {% csrf_token %}
-          {{form|crispy}}
-          <input type="submit" value="Save">
-        </form>
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="display_table">
+              <form action="" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" class="btn btn-primary" value="Save">
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

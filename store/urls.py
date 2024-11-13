@@ -15,8 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from inventory import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -29,4 +30,6 @@ urlpatterns = [
     path('receive-items/<str:pk>/', views.receive_items, name='receive_items'),
     path('reorder-level/<str:pk>/', views.reorder_level, name='reorder_level'),
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

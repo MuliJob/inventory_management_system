@@ -11,18 +11,18 @@ class StockCreateForm(forms.ModelForm):
     if not category:
       raise forms.ValidationError('This field is required')
     for instance in Stock.objects.all():
-      if instance.category == category:
-        raise forms.ValidationError(category + ' is already created')
-    return category
+      # if instance.category == category:
+      #   raise forms.ValidationError(str(category) + ' is already created')
+      return category
   
   def clean_item_name(self):
     item_name = self.cleaned_data.get('item_name')
     if not item_name:
       raise forms.ValidationError('This field is required')
     for instance in Stock.objects.all():
-      if instance.item_name == item_name:
-        raise forms.ValidationError(item_name + ' is already created')
-    return item_name
+      # if instance.item_name == item_name:
+      #   raise forms.ValidationError(item_name + ' is already created')
+      return item_name
 
 class StockSearchForm(forms.ModelForm):
   export_to_CSV = forms.BooleanField(required=False)

@@ -42,6 +42,12 @@
       {% endif %}
       <div class="jumbotron">
         <div class="header">{{header}}</div>
+        <form action="{% url 'list_history' %}" method="post">
+          {% csrf_token %}
+          {{form|crispy}}
+          <input type="submit" value="Search">
+        </form>
+        <br>
         <div class="display_table">
           <table class="table">
             <thead>

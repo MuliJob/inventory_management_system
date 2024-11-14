@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="{% url 'home' %}">Store</a>
+  <a class="navbar-brand" href="{% url 'home' %}">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        <!-- <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a> -->
       </li>
       {% if request.user.is_authenticated %}
       <li class="nav-item">
@@ -34,3 +34,30 @@
     </ul>
   </div>
 </nav>
+
+<a href="#"><div id="version-display" data-toggle="modal" data-target="#myModal">SMIS Ver: 1.0</div></a>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="modal-title">SYSTEM INFORMATION</h4>
+      </div>
+      <div class="modal-body">
+        <div class="dev-info">
+          <p class=""><b>STOCK MANAGEMENT INFORMATION SYSTEMS</b></p>
+          <p>VERSION: 1.0</p><br>
+
+          <p class="modal-header">DEVELOPER:</p>
+          <p>Muli Munyoki</p>
+          <!-- <p><img src="" alt="Developer Logo"></p> -->
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

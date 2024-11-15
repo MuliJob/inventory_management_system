@@ -4,7 +4,7 @@ from .models import Stock, StockHistory
 class StockCreateForm(forms.ModelForm):
   class Meta:
     model = Stock
-    fields = ['category', 'item_name', 'quantity']
+    fields = ['category', 'item_name', 'quantity', 'issue_by']
 
   def clean_category(self):
     category = self.cleaned_data.get('category')
